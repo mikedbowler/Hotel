@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Customer Registration</title>
+<title>Sign In</title>
 
 <style>
 ul {
@@ -38,21 +38,30 @@ margin: 5px 0px 5px 0px;
 </style>
 
 </head>
-
 <body>
-	<!--This page will be our customer registration screen-->
 
 <ul>
-  <li><a href="reservation.html">Reservations</a></li>
-  <li><a href="statistics.html">Hotel Statistics</a></li>
+  <li><a href="registration.html">Registration</a></li>
 </ul>
 
 <div align="center">
 
-<h1>Welcome to Hulton Hotels! </h1>
-<h2>To make a reservation Sign In</h2>
+<h1>Hulton Hotels Sign In</h1>
 
-<form method="post" action="/reg_action.jsp">
+<script>
+function validateForm() {
+    var fname = document.forms["entryForm"]["firstname"].value;
+    var lname = document.forms["entryForm"]["lastname"].value;
+    var email = document.forms["entryForm"]["email"].value;
+    
+    if (fname=="" || lname=="" || email=="") {
+        alert("All fields must be filled out!");
+        return false;
+    }
+}
+</script>
+
+<form name="entryForm" method="post" action="signin_val.jsp" onsubmit="return validateForm()">
   First name:
   <input type="text" name="firstname" placeholder="First&nbsp;Name">
   <br>
@@ -62,18 +71,9 @@ margin: 5px 0px 5px 0px;
   Email:
   <input type="text" name="email" placeholder="Email">
   <br>
-  Phone number:
-  <input type="text" name="phonenumber" placeholder="###-###-####">
-  <br>
-  Address:
-  <input type="text" name="address" placeholder="Street,City,State,Zip">
-  <br><br>
-  <input type="submit" value="Register">
-  <button type="button" onclick="alert('Sign In button was clicked!')">Sign In</button>
+  <input type="submit" value="Sign In">
 </form> 
-
 </div>
 
 </body>
-
 </html>
