@@ -34,11 +34,114 @@ li a:hover {
 
 <body>
 	<!--This page will be our online reservation screen-->
+	
+<script>
+function validateForm() {
+    var city = document.forms["resForm"]["city"].value;
+    var state = document.forms["resForm"]["state"].value;
+    var country = document.forms["resForm"]["country"].value;
+    var room = document.forms["resForm"]["room"].value;
+    var inDate = document.forms["resForm"]["in"].value;
+    var outDate = document.forms["resForm"]["out"].value;
+    
+    if (city=="" || state=="" || country=="" || room=="" || inDate=="" || outDate=="") {
+        alert("All fields must be filled out!\n (Except for Services and Breakfasts)");
+        return false;
+    }
+}
+</script>
 
 <ul>
   <li><a href="registration.html">Registration</a></li>
   <li><a href="statistics.html">Hotel Statistics</a></li>
 </ul>
+
+<form name="resForm" method="POST" action="res_val.jsp" onsubmit="return validateForm()" >
+  <fieldset>
+    <legend>Select Hotel:</legend>
+    City:
+    <select name="city">
+  	<option value="Piscataway">Piscataway</option>
+  	<option value="Orlando">Orlando</option>
+  	<option value="Chicago">Chicago</option>
+  	<option value="New York Cit">New York City</option>
+  	<option value="Colorado Springs">Colorado Springs</option>
+  	<option value="London">London</option>
+  	<option value="Montreal">Montreal</option>
+  	<option value="Toronto">Toronto</option>
+  	<option value="Vancouver">Vancouver</option>
+  	<option value="Cambridge">Cambridge</option>
+	</select>
+    State:
+    <select name="state">
+  	<option value="NJ">NJ</option>
+  	<option value="FL">FL</option>
+  	<option value="IL">IL</option>
+  	<option value="NY">NY</option>
+  	<option value="CO">CO</option>
+  	<option value="NA">NA</option>
+	</select>
+    Country:
+    <select name="country">
+  	<option value="USA">USA</option>
+  	<option value="CAN">CAN</option>
+  	<option value="UK">UK</option>
+	</select>
+    
+    <p>*Select NA for state if country is not in USA</p>
+    
+  </fieldset>
+  
+  <fieldset>
+  	<legend>Select Room and Date:</legend>
+  	
+  	Room:
+  	<select name="room">
+  	<option value="Single">Single</option>
+  	<option value="Double">Double</option>
+  	<option value="Adjoined Single">Adjoined Single</option>
+  	<option value="Adjoined Double">Adjoined Double</option>
+  	</select> <br>
+  	Check in Date:
+  	<input type="date" name="in" placeholder="mm/dd/yyyy">
+  	Check out Date:
+  	<input type="date" name="out" placeholder="mm/dd/yyyy">
+  
+  </fieldset>
+  
+
+   <fieldset>
+  		<legend>Select Services:</legend>
+  	
+  		<input type="checkbox" name="laundry" value="Laundry">Laundry
+		<br>
+		<input type="checkbox" name="massage" value="Massage">In Room Massage
+		<br> 
+		<input type="checkbox" name="food" value="Food">In Room Food Delivery
+		<br>
+		<input type="checkbox" name="movies" value="Movies">In Room Movies 
+  	
+   </fieldset>
+  	
+  	
+   <fieldset>
+  		<legend>Select Breakfasts and Quantity:</legend>
+  	
+  		<input type="checkbox" name="light" value="Light Continnetal">Light Continental
+		<input type="text" name="lightq" maxlength="2" size="2">
+		<br>
+		<input type="checkbox" name="regular" value="Continnetal">Continental
+		<input type="text" name="regularq" maxlength="2" size="2">
+		<br> 
+		<input type="checkbox" name="buffet" value="Buffet">Buffet
+		<input type="text" name="buffetq" maxlength="2" size="2">  	
+  	
+   </fieldset>
+   <br>
+   
+   <input type="submit" value="Procceed to Checkout">
+   
+</form>
 
 </body>
 
