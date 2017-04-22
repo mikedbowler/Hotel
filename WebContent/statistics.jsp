@@ -8,5 +8,15 @@
 </head>
 <body>
 
+<p>
+
+This information will be dynamically placed, once the database is queried<br>
+1. For a given time period (begin date and end date) compute the highest rated room type for each hotel.<br>
+2. For a given time period (begin date and end date) compute the 5 best customers (in terms of money spent in reservations).<br>
+3. For a given time period (begin date and end date) compute the highest rated breakfast type across all hotels.<br>
+4. For a given time period (begin date and end date) compute the highest rated service type across all hotels.
+
+</p>
+
 </body>
 </html>

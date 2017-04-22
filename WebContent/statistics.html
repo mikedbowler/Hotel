@@ -34,11 +34,39 @@ li a:hover {
 
 <body>
 	<!--This page will be our hotel statistics screen-->
+<script>
+function validateForm() {
+    var beginDate = document.forms["statForm"]["begin"].value;
+    var endDate = document.forms["statForm"]["end"].value;
+    
+    if (beginDate=="" || endDate=="") {
+        alert("All fields must be filled out!");
+        return false;
+    }
+}
+</script>
 
 <ul>
   <li><a href="registration.html">Registration</a></li>
   <li><a href="reservation.html">Reservations</a></li>
 </ul>
+
+<form name="statForm" method="POST" action="statistics.jsp" onsubmit="return validateForm()">
+
+	<fieldset>
+		<legend>Enter Begin and End Date:</legend>
+
+		Begin Date:
+  		<input type="date" name="in" placeholder="mm/dd/yyyy">
+  		End Date:
+  		<input type="date" name="out" placeholder="mm/dd/yyyy">
+  		
+	</fieldset>
+	<br>
+	
+	<input type="submit" value="Retrieve Statistics">
+  
+</form>
 
 </body>
 

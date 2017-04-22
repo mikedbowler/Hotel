@@ -8,5 +8,10 @@
 </head>
 <body>
 
+<p>This page won't have any design, it is strictly for the purpose of<br>
+input validation and redirecting the user to the next page if input is<br>
+valid, otherwise redirects them back to checkout.
+</p>
+
 </body>
 </html>
