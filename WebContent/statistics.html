@@ -34,6 +34,10 @@ li a:hover {
 
 <body>
 	<!--This page will be our hotel statistics screen-->
+<ul>
+  <li><a href="signin.html">Sign In</a></li>
+</ul>	
+	
 <script>
 function validateForm() {
     var beginDate = document.forms["statForm"]["begin"].value;
@@ -45,11 +49,6 @@ function validateForm() {
     }
 }
 </script>
-
-<ul>
-  <li><a href="registration.html">Registration</a></li>
-  <li><a href="reservation.html">Reservations</a></li>
-</ul>
 
 <form name="statForm" method="POST" action="statistics.jsp" onsubmit="return validateForm()">
 
