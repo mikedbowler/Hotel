@@ -9,10 +9,7 @@
 </head>
 <body>
 
-<p>This page won't have any design, it is strictly for the purpose of<br>
-input validation and redirecting the user to the next page if input is<br>
-valid, otherwise redirects them back to registration.
-</p>
+
 
 <% 
 
@@ -20,7 +17,7 @@ try{
 	
 Class.forName("com.mysql.jdbc.Driver").newInstance(); 
 
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelDB","root","Strike12"); 
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelDB","root","root1"); 
 
 Statement stmt = conn.createStatement();
 
@@ -30,7 +27,7 @@ String address = request.getParameter("address").trim();
 String email = request.getParameter("email").trim();
 
 ResultSet rs = stmt.executeQuery("SELECT C.Name,C.Email from Customer C");
-
+boolean success = true;
 while(rs.next())
 {
 	String name = rs.getString("Name");
@@ -41,12 +38,13 @@ while(rs.next())
 		%>
 		<script>
 		
-		window.open("registration.html","_self")
+		window.open("index.html","_self")
 		
 		alert("Name already exists!")
 		
 		</script>	
 		<%
+		success = false;
 		break;
 	}
 	else if(email2.equals(email))
@@ -54,16 +52,18 @@ while(rs.next())
 		%>
 		<script>
 		
-		window.open("registration.html","_self")
+		window.open("index.html","_self")
 		
 		alert("Email already exists!")
 		
 		</script>	
 		<%
+		success = false;
 		break;
 	}
 }
 
+if(success){
 PreparedStatement pstmt=conn.prepareStatement("INSERT INTO CUSTOMER (CID,Name,Phone_no,Address,Email) VALUES (null,?,?,?,?)");
 pstmt.setString(1,fullName); 
 pstmt.setString(2,phone); 
@@ -72,13 +72,17 @@ pstmt.setString(4,email);
 
 pstmt.executeUpdate();
 
+session.setAttribute("firstName", request.getParameter("firstname"));
+session.setAttribute("lastName", request.getParameter("lastname"));
+session.setAttribute("email", email);
+
 %>
 <script>
 window.open("reservation.html","_self")
 
-
 </script>
 <%
+}
 // Close the ResultSet 
 rs.close(); 
 //ClosetheStatement
