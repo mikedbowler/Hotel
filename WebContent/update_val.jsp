@@ -14,31 +14,34 @@
 <% 
 
 try{
-	
+
+out.println(request.getParameter("CID"));
 Class.forName("com.mysql.jdbc.Driver").newInstance(); 
 
 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelDB","root","root1"); 
 
 Statement stmt = conn.createStatement();
 
+int CID = Integer.parseInt(request.getParameter("CID"));
 String fullName = (request.getParameter("firstname")+" "+request.getParameter("lastname")).trim();
 String phone = request.getParameter("phonenumber").trim();
 String address = request.getParameter("address").trim();
 String email = request.getParameter("email").trim();
 
-ResultSet rs = stmt.executeQuery("SELECT C.Name,C.Email from Customer C");
+ResultSet rs = stmt.executeQuery("SELECT * from Customer C");
 boolean success = true;
 while(rs.next())
 {
 	String name = rs.getString("Name");
 	String email2 = rs.getString("Email");
+	int CID2 = rs.getInt("CID");
 	
-	if(name.equals(fullName) && email2.equals(email))
+	if(name.equals(fullName) && email2.equals(email) && CID2 != CID)
 	{
 		%>
 		<script>
 		
-		window.open("index.html","_self")
+		window.open("update.jsp","_self")
 		
 		alert("Another user already has these credentials.")
 		
@@ -50,11 +53,12 @@ while(rs.next())
 }
 
 if(success){
-PreparedStatement pstmt=conn.prepareStatement("INSERT INTO CUSTOMER (CID,Name,Phone_no,Address,Email) VALUES (null,?,?,?,?)");
+PreparedStatement pstmt=conn.prepareStatement("UPDATE CUSTOMER SET Name=?,Phone_no=?,Address=?,Email=? where CID=?");
 pstmt.setString(1,fullName); 
 pstmt.setString(2,phone); 
 pstmt.setString(3,address); 
 pstmt.setString(4,email); 
+pstmt.setString(5,String.valueOf(CID));
 
 pstmt.executeUpdate();
 
@@ -65,6 +69,8 @@ session.setAttribute("email", email);
 %>
 <script>
 window.open("reservation.html","_self")
+
+alert("Success!")
 
 </script>
 <%
