@@ -153,6 +153,7 @@ else {
 
 %>
 <div align="center">
+<h1>Reserve Rooms</h1>
 <form name="resForm" method="POST" action="res_val.jsp" onsubmit="return validateForm()">
 	<table>
 	  <tr>

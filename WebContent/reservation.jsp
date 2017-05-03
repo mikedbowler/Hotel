@@ -99,6 +99,7 @@ else
 	rs = stmt.executeQuery("SELECT * from Hotel");
 %>
 <div align="center">
+<h1>Choose a Hotel</h1>
 <form name="resForm" method="POST" action="res_val.jsp" onsubmit="return validateForm()">
 	<table>
 	  <tr>
