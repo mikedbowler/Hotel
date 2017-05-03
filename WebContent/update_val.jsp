@@ -15,7 +15,6 @@
 
 try{
 
-out.println(request.getParameter("CID"));
 Class.forName("com.mysql.jdbc.Driver").newInstance(); 
 
 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelDB","root","root1"); 

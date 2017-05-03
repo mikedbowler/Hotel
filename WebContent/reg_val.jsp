@@ -64,7 +64,7 @@ session.setAttribute("email", email);
 
 %>
 <script>
-window.open("reservation.html","_self")
+window.open("reservation.jsp","_self")
 
 </script>
 <%

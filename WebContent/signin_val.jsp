@@ -61,7 +61,7 @@ else if(success){
 
 %>
 <script>
-window.open("reservation.html","_self")
+window.open("reservation.jsp","_self")
 
 </script>
 <%

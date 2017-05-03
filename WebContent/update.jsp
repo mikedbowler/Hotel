@@ -44,7 +44,7 @@ margin: 5px 0px 5px 0px;
 <body>
 
 <ul>
-  <li><a href="signin.html">Sign In</a></li>
+  <li><a href="reservation.jsp">Reserve a Room</a></li>
 </ul>
 
 <div align="center">
