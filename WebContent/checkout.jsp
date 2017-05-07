@@ -114,9 +114,17 @@ function validateForm() {
  <fieldset>
  	
  	<legend>Transaction Summary:</legend>
- 	 	
- <!--Will add code to display total amount later-->
- 	<p>Total Amount:</p>
+<% 	 	
+pstmt = conn.prepareStatement("SELECT * FROM Reservation r WHERE r.InvoiceNo=?");
+pstmt.setString(1, session.getAttribute("invoiceNum").toString());
+rs = pstmt.executeQuery();
+String totalAmount="0.00";
+if(rs.next())
+{
+	totalAmount=rs.getString("TotalAmt");
+}
+%>
+ 	<p>Total Amount: $<%=totalAmount%></p>
 
  </fieldset>
  
@@ -124,29 +132,44 @@ function validateForm() {
  	<legend>Credit Card Information:</legend>
  	
  	First name:
-  	<input type="text" name="firstname" value=<%= fname%> placeholder="First&nbsp;Name">
+  	<input type="text" name="firstname" value="<%= fname%>" placeholder="First&nbsp;Name">
   	<br>
   	Last name:
-  	<input type="text" name="lastname" value=<%= lname%> placeholder="Last&nbsp;Name">
+  	<input type="text" name="lastname" value="<%= lname%>" placeholder="Last&nbsp;Name">
   	<br>
   	Billing Address:
  	<input type="text" maxlength="60" name="address" value="<%= address%>" placeholder="Street,City,State,Zip">
   	<br>
   	Card number:
-  	<input type="text" name="cardnumber" value=<%= cardnumber%> placeholder="Card Number">
+  	<input type="text" name="cardnumber" value="<%= cardnumber%>" placeholder="Card Number">
   	<br>
   	Security Code:
-  	<input type="text" name="seccode" value=<%= seccode%> placeholder="Security Code">
+  	<input type="text" name="seccode" value="<%= seccode%>" placeholder="Security Code">
   	<br>
   	Type:
-  	<select name="ctype">
+  	<select id="SelectType" name="ctype">
   	<option value="MasterCard">MasterCard</option>
   	<option value="Visa">Visa</option>
   	<option value="Discover">Discover</option>
 	</select>
+	
+<script>
+SelectElement("<%=cType%>");
+
+function SelectElement(valueToSelect)
+{    
+    var element = document.getElementById("SelectType");
+    element.value = valueToSelect;
+    
+    if(valueToSelect=="")
+    {
+    	element.value = "MasterCard";
+   	}
+}
+</script>
 	<br>
 	Expiration Date:
-	<input type="date" value=<%= expdate%> name="expdate">
+	<input type="date" value="<%= expdate%>" name="expdate">
  </fieldset>
  <br>
  <input type="submit" value="Reserve Now">
