@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Customer Registration</title>
+
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111111;
+}
+
+input {
+
+margin: 5px 0px 5px 0px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+	<!--This page will be our customer registration screen-->
+
+<ul>
+  <li><a href="signin.html">Sign In</a></li>
+</ul>
+
+<div align="center">
+
+<h1>Welcome to Hulton Hotels! </h1>
+<h2>To make a reservation Sign In</h2>
+<h4>Not a member? Please register below:</h4>
+
+<script>
+function validateForm() {
+    var fname = document.forms["regForm"]["firstname"].value;
+    var lname = document.forms["regForm"]["lastname"].value;
+    var email = document.forms["regForm"]["email"].value;
+    var phonenumber = document.forms["regForm"]["phonenumber"].value;
+    var address = document.forms["regForm"]["address"].value;
+    
+    if (fname=="" || lname=="" || email=="" || phonenumber=="" || address=="") {
+        alert("All fields must be filled out!");
+        return false;
+    }
+}
+</script>
+
+<form name="regForm" method="post" action="reg_val.jsp" onsubmit="return validateForm()">
+  First name:
+  <input type="text" name="firstname" placeholder="First&nbsp;Name">
+  <br>
+  Last name:
+  <input type="text" name="lastname" placeholder="Last&nbsp;Name">
+  <br>
+  Email:
+  <input type="email" name="email" placeholder="Email">
+  <br>
+  Phone number:
+  <input type="text" name="phonenumber" placeholder="###-###-####">
+  <br>
+  Address:
+  <input type="text" name="address" placeholder="Street,City,State,Zip">
+  <br><br>
+  <input type="submit" value="Register">
+</form> 
+
+</div>
+
+</body>
+
+</html>
