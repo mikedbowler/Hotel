@@ -12,11 +12,9 @@ ul {
     overflow: hidden;
     background-color: #333333;
 }
-
 li {
     float: left;
 }
-
 li a {
     display: block;
     color: white;
@@ -24,17 +22,12 @@ li a {
     padding: 16px;
     text-decoration: none;
 }
-
 li a:hover {
     background-color: #111111;
 }
-
 input {
-
 margin: 5px 0px 5px 0px;
-
 }
-
 </style>
 
 </head>
@@ -47,8 +40,7 @@ function validateForm() {
 </script>
 
 <ul>
-  <li><a href="signin.html">Sign In</a></li>
-  <li><a href="index.html">Registration</a></li>
+  <li><a href="registration.html">Registration</a></li>
   <li><a href="reservation.html">Reservation</a></li>
   <li><a href="statistics.html">Hotel Statistics</a></li>
 </ul>
@@ -56,6 +48,21 @@ function validateForm() {
 <h1>Please take a moment to write a review</h1>
 
 <form name="revForm" method="POST" action="res_val.jsp" onsubmit="return validateForm()" >
+<fieldset>
+	<legend>Where was your stay?</legend>
+	
+  	<select name="Location">
+  	<option value="Piscataway">Piscataway</option>
+  	<option value="Orlando">Orlando</option>
+  	<option value="Chicago">Chicago</option>
+  	<option value="New York City">New York City</option>
+  	<option value="Colorado Springs">Colorado Springs</option>
+  	<option value="London">London</option>
+  	<option value="Toronto">Toronto</option>
+  	<option value="Vancouver">Vancouver</option>
+  	<option value="Cambridge">Cambridge</option>
+  	</select>
+</fieldset>
 
 <fieldset>
   	<legend>Select Review Type:</legend>
