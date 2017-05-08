@@ -22,10 +22,6 @@ ResultSet rs=null;
 
 PreparedStatement pstmt=null;
 
-//Next two lines are for testing purposes
-//session.setAttribute("firstName","Bob");
-//session.setAttribute("lastName","Smith");
-
 String fullname=session.getAttribute("firstName")+" "+session.getAttribute("lastName");
 String cid="";
 pstmt = conn.prepareStatement("SELECT CID FROM Customer c WHERE c.Name=? ");
@@ -114,6 +110,34 @@ else if(rType.equals("Breakfast"))
 else if(rType.equals("Service"))
 {
 	sType=request.getParameter("service");
+	pstmt = conn.prepareStatement("SELECT * FROM (SELECT sr.InvoiceNo, sr.sType, sr.HotelID, mr.CID FROM ServiceReservation sr JOIN MakeReservation mr ON sr.InvoiceNo=mr.InvoiceNo) t1 WHERE t1.HotelID=? AND t1.sType=? AND t1.CID=?");
+	pstmt.setString(1, hotel);
+	pstmt.setString(2, sType);
+	pstmt.setString(3, cid);
+	rs=pstmt.executeQuery();
+	
+	if(rs.next())
+	{
+		pstmt = conn.prepareStatement("INSERT INTO ServiceReview (sType,HotelID,CID,Rating,TextComment,DateSubmitted) VALUES (?,?,?,?,?,current_date())");
+		pstmt.setString(1, sType);
+		pstmt.setString(2, hotel);
+		pstmt.setString(3, cid);
+		pstmt.setString(4, rating);
+		pstmt.setString(5, comments);
+		pstmt.executeUpdate();
+	}
+	else
+	{
+		rs.close();
+		pstmt.close();
+		%>
+		<script>
+		window.open("review.jsp","_self")
+	
+		alert("Invalid, please ensure Hotel and Service type match your reservation!")
+		</script>
+		<%
+	}
 }
 
 
