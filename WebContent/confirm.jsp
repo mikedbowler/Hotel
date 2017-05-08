@@ -46,11 +46,24 @@ pstmt.execute();
 %>
 <script>
 alert("Credit card information entered!");
-
-window.open("reservation.jsp","_self")
 </script>
 <%
 }
+
+pstmt = conn.prepareStatement("INSERT INTO MakeReservation VALUES (?,?,?)");
+pstmt.setInt(1, (Integer)session.getAttribute("CID"));
+pstmt.setString(2, ccNum);
+pstmt.setInt(3, (Integer)session.getAttribute("InvoiceNo"));
+pstmt.executeUpdate();
+
+%>
+<script>
+alert("Reservation Successful!");
+window.open("reservation.jsp","_self");
+</script>
+<%
+
+
 //ClosetheStatement
 pstmt.close();
 // Close the Connection 

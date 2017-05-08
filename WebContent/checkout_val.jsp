@@ -191,7 +191,7 @@ boolean hasCC = false;
 session.setAttribute("hasCC",hasCC);
  
  pstmt = conn.prepareStatement("SELECT * FROM CreditCard c WHERE c.name=?");
- pstmt.setString(1, session.getAttribute("firstname")+" "+session.getAttribute("lastname"));
+ pstmt.setString(1, session.getAttribute("firstName")+" "+session.getAttribute("lastName"));
  rs = pstmt.executeQuery();
  
  String[] name={"",""};
@@ -290,6 +290,8 @@ function SelectElement(valueToSelect)
 <input type="submit" value="Reserve Now">
 </form>
 
+<form name="cancelForm" method="POST" action="cancel.jsp" >
+<input type="submit" value="Cancel Reservation">
 
 <%
  

@@ -109,7 +109,7 @@ function validateForm() {
    out.println("<h3>Breakfasts:</h3>");
    while(rs.next()){
 	   bCounter++;
-	   out.println(rs.getString("bType")+" Quantity: <input type=\"text\" name=\"bQuantity"+counter+"_"+bCounter+"\"><br>");
+	   out.println(rs.getString("bType")+" ($"+rs.getFloat("bPrice")+") Quantity: <input type=\"text\" name=\"bQuantity"+counter+"_"+bCounter+"\"><br>");
    }
    rs.close();
    pstmt.close();
@@ -122,7 +122,7 @@ function validateForm() {
    out.println("<h3>Services:</h3>");
    while(rs.next()){
 	   sCounter++;
-	   out.println(rs.getString("sType")+" <input type=\"checkbox\" name=\"sQuantity"+counter+"_"+sCounter+"\"><br>");
+	   out.println(rs.getString("sType")+" ($"+rs.getFloat("sCost")+") <input type=\"checkbox\" name=\"sQuantity"+counter+"_"+sCounter+"\"><br>");
    }
    rs.close();
    pstmt.close();

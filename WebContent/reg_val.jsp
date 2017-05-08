@@ -58,6 +58,13 @@ pstmt.setString(4,email);
 
 pstmt.executeUpdate();
 
+rs.close();
+
+pstmt=conn.prepareStatement("Select max(CID) max FROM Customer;");
+rs = pstmt.executeQuery();
+rs.next();
+
+session.setAttribute("CID", rs.getInt("max"));
 session.setAttribute("firstName", request.getParameter("firstname"));
 session.setAttribute("lastName", request.getParameter("lastname"));
 session.setAttribute("email", email);

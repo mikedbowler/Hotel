@@ -55,6 +55,13 @@ if(isAdmin){
  	<%
 }
 else if(success){
+	rs.close();
+	PreparedStatement pstmt=conn.prepareStatement("Select CID FROM Customer where Name=? and Email=?;");
+	pstmt.setString(1, fullName);
+	pstmt.setString(2, email);
+	rs = pstmt.executeQuery();
+	rs.next();
+	session.setAttribute("CID", rs.getInt("CID"));
 	session.setAttribute("firstName", request.getParameter("firstname"));
 	session.setAttribute("lastName", request.getParameter("lastname"));
 	session.setAttribute("email", email);
