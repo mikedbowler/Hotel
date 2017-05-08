@@ -37,6 +37,7 @@ li a:hover {
 <ul>
   <li><a href="signin.html">Logout</a></li>
   <li><a href="update.jsp">Update User Info</a></li>
+  <li><a href="review.html">Write a Review</a></li>
 </ul>
 
 <body>
@@ -154,7 +155,7 @@ else {
 %>
 <div align="center">
 <h1>Reserve Rooms</h1>
-<form name="resForm" method="POST" action="res_val.jsp" onsubmit="return validateForm()">
+<form name="resForm" method="POST" action="checkout.jsp" onsubmit="return validateForm()">
 	<table>
 	  <tr>
 	    <th>Reserve</th>
@@ -170,7 +171,7 @@ else {
 	  </tr>
 <% 
 while(rs.next()){
-	out.println("<tr><td><input type=\"checkbox\" name=\"box\" value=\""+rs.getInt("Room_no")+"\"></td>");
+	out.println("<tr><td><input type=\"checkbox\" name=\"box"+rs.getInt("Room_no")+"\" value=\""+rs.getInt("Room_no")+"\"></td>");
 	out.println("<td>"+rs.getInt("Room_no")+"</td>");
 	out.println("<td>$"+rs.getInt("Price")+"</td>");
 	out.println("<td>"+rs.getInt("Capacity")+"</td>");

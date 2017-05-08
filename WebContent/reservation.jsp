@@ -67,6 +67,7 @@ function validateForm2() {
 <ul>
   <li><a href="signin.html">Logout</a></li>
   <li><a href="update.jsp">Update User Info</a></li>
+  <li><a href="review.html">Write a Review</a></li>
 </ul>
 
 <%
