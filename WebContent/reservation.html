@@ -47,7 +47,28 @@ function validateForm() {
     if (city=="" || state=="" || country=="" || room=="" || inDate=="" || outDate=="") {
         alert("All fields must be filled out!\n (Except for Services and Breakfasts)");
         return false;
+    } 
+    if (state=="NA" && country=="USA") {
+        alert("Please enter a valid hotel");
+        return false;
     }
+    if ((state=="NJ" && city!="Piscataway") || (state=="FL" && city!=="Orlando") || (state=="IL" && city!=="Chicago") || (state=="NY" && city!="New York City") || (state=="CO" && city!="Colorado Springs")) {
+        alert("Please enter a valid hotel");
+        return false;
+    }
+    if ((state!="NJ" && city=="Piscataway") || (state!="FL" && city=="Orlando") || (state!="IL" && city=="Chicago") || (state!="NY" && city=="New York City") || (state!="CO" && city=="Colorado Springs")) {
+        alert("Please enter a valid hotel");
+        return false;
+    }
+    if ((country!=="UK" && (city=="London" || city=="Vancouver" || city=="Cambridge")) || (country!="CAN" && (city=="Montreal" || city=="Toronto"))) {
+        alert("Please enter a valid hotel");
+        return false;
+    }
+    if (inDate > outDate) {
+        alert("Start date must be before the end date!");
+        return false;
+    }
+
 }
 </script>
 
@@ -56,8 +77,7 @@ function validateForm() {
   <li><a href="reservation.html">Reserve a Room</a></li>
   <li><a href="reservation.html">Current Reservations</a></li>
   <li><a href="update.jsp">Update User Info</a></li>
-  <li><a href="review.html">Write a Review</a></li>
-  <li><a href="statistics.jsp">Hotel Statistics</a></li>
+  <li><a href="review.jsp">Write a Review</a></li>
 </ul>
 
 <form name="resForm" method="POST" action="res_val.jsp" onsubmit="return validateForm()" >
