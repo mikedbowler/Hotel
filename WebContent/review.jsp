@@ -43,9 +43,28 @@ margin: 5px 0px 5px 0px;
 </head>
 <body>
 
+<%
+try{
+
+Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelDB","root","root1"); 
+
+ResultSet rs=null;
+%>
+
 <script>
 function validateForm() {
-    alert("Thank you for your feedback!");
+	
+	var room_no = document.forms["revForm"]["room_no"].value;
+	var rtype = document.forms["revForm"]["rtype"].value;
+
+	if(room_no=="" && rtype=="Room")
+	{
+		alert("Must enter room number for a room review!")
+		return false;
+	}
+
 }
 </script>
 
@@ -58,16 +77,7 @@ function validateForm() {
 
 <h1>Please take a moment to write a review</h1>
 
-<%
-try{
-
-Class.forName("com.mysql.jdbc.Driver").newInstance(); 
-
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelDB","root","root1"); 
-
-%>
-
-<form name="revForm" method="POST" action="res_val.jsp" onsubmit="return validateForm()" >
+<form name="revForm" method="POST" action="rev_val.jsp" onsubmit="return validateForm()" >
 
 <fieldset>
 <legend>Select the Hotel you Visited:</legend>
@@ -77,7 +87,7 @@ Hotel (Street,City,State,Country,Zip):
 
 <%
 Statement stmt = conn.createStatement();
-ResultSet rs = stmt.executeQuery("SELECT * FROM HOTEL");
+rs = stmt.executeQuery("SELECT * FROM HOTEL");
 
 //Populate drop down list to allow cutomer to select the hotel they stayed at.
 while(rs.next())

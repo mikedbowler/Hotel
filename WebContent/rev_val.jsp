@@ -22,6 +22,7 @@ ResultSet rs=null;
 
 PreparedStatement pstmt=null;
 
+//Next two lines are for testing purposes
 //session.setAttribute("firstName","Bob");
 //session.setAttribute("lastName","Smith");
 
@@ -66,6 +67,8 @@ if(rType.equals("Room"))
 	}
 	else
 	{
+		rs.close();
+		pstmt.close();
 		%>
 		<script>
 		window.open("review.jsp","_self")
@@ -79,6 +82,34 @@ if(rType.equals("Room"))
 else if(rType.equals("Breakfast"))
 {
 	bType=request.getParameter("breakfast");
+	pstmt = conn.prepareStatement("SELECT * FROM (SELECT br.InvoiceNo, br.bType, br.HotelID, mr.CID FROM BreakfastReservation br JOIN MakeReservation mr ON br.InvoiceNo=mr.InvoiceNo) t1 WHERE t1.HotelID=? AND t1.bType=? AND t1.CID=?");
+	pstmt.setString(1, hotel);
+	pstmt.setString(2, bType);
+	pstmt.setString(3, cid);
+	rs=pstmt.executeQuery();
+	
+	if(rs.next())
+	{
+		pstmt = conn.prepareStatement("INSERT INTO BreakfastReview (bType,HotelID,CID,Rating,TextComment,DateSubmitted) VALUES (?,?,?,?,?,current_date())");
+		pstmt.setString(1, bType);
+		pstmt.setString(2, hotel);
+		pstmt.setString(3, cid);
+		pstmt.setString(4, rating);
+		pstmt.setString(5, comments);
+		pstmt.executeUpdate();
+	}
+	else
+	{
+		rs.close();
+		pstmt.close();
+		%>
+		<script>
+		window.open("review.jsp","_self")
+	
+		alert("Invalid, please ensure Hotel and Breakfast type match your reservation!")
+		</script>
+		<%
+	}
 }
 else if(rType.equals("Service"))
 {
