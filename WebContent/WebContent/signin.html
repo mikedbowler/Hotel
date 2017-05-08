@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sign In</title>
+
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111111;
+}
+
+input {
+
+margin: 5px 0px 5px 0px;
+
+}
+
+</style>
+
+</head>
+<body>
+
+<ul>
+  <li><a href="index.html">Registration</a></li>
+</ul>
+
+<div align="center">
+
+<h1>Hulton Hotels Sign In</h1>
+
+<script>
+function validateForm() {
+    var fname = document.forms["entryForm"]["firstname"].value;
+    var lname = document.forms["entryForm"]["lastname"].value;
+    var email = document.forms["entryForm"]["email"].value;
+    
+    if (fname=="" || lname=="" || email=="") {
+        alert("All fields must be filled out!");
+        return false;
+    }
+}
+</script>
+
+<form name="entryForm" method="post" action="signin_val.jsp" onsubmit="return validateForm()">
+  First name:
+  <input type="text" name="firstname" placeholder="First&nbsp;Name">
+  <br>
+  Last name:
+  <input type="text" name="lastname" placeholder="Last&nbsp;Name">
+  <br>
+  Email:
+  <input type="text" name="email" placeholder="Email">
+  <br>
+  <input type="submit" value="Sign In">
+</form> 
+</div>
+
+</body>
+</html>
