@@ -64,6 +64,12 @@ function validateForm() {
         alert("All fields must be filled out!");
         return false;
     }
+    
+    if(phonenumber.length != 12){
+    	alert("Phone Number format: ###-###-####");
+    	return false;
+    }
+    
 }
 </script>
 
