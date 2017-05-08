@@ -6,8 +6,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Review Validation</title>
+
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111111;
+}
+</style>
+
 </head>
 <body>
+
+<ul>
+  <li><a href="signin.html">Logout</a></li>
+  <li><a href="index.html">Registration</a></li>
+  <li><a href="reservation.html">Reservation</a></li>
+  <li><a href="review.jsp">Review</a></li>
+</ul>
 
 <h1>Thank You! Your Feedback is Appreciated!</h1>
 
