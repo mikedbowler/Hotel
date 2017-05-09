@@ -70,8 +70,8 @@ function validateForm() {
 
 <ul>
   <li><a href="signin.html">Logout</a></li>
-  <li><a href="index.html">Registration</a></li>
-  <li><a href="reservation.html">Reservation</a></li>
+  <li><a href="reservation.jsp">Reserve a Room</a></li>
+  <li><a href="update.jsp">Update User Info</a></li>
 </ul>
 
 <h1>Please take a moment to write a review</h1>
