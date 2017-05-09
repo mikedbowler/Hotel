@@ -87,6 +87,14 @@ if(rType.equals("Room"))
 	
 	if(rs.next())
 	{
+		pstmt = conn.prepareStatement("SELECT * FROM RoomReview rr WHERE rr.Room_no=? AND rr.HotelID=? AND rr.CID=?");
+		pstmt.setString(1,room_no);
+		pstmt.setString(2,hotel);
+		pstmt.setString(3,cid);
+		rs=pstmt.executeQuery();
+		
+		if(!rs.next())
+		{
 		pstmt = conn.prepareStatement("INSERT INTO RoomReview (Room_no,HotelID,CID,Rating,TextComment,DateSubmitted) VALUES (?,?,?,?,?,current_date())");
 		pstmt.setString(1, room_no);
 		pstmt.setString(2, hotel);
@@ -94,6 +102,19 @@ if(rType.equals("Room"))
 		pstmt.setString(4, rating);
 		pstmt.setString(5, comments);
 		pstmt.executeUpdate();
+		}
+		else
+		{
+			rs.close();
+			pstmt.close();
+			%>
+			<script>
+			window.open("review.jsp","_self")
+		
+			alert("Cannot write another review for the same room!")
+			</script>
+			<%
+		}
 	}
 	else
 	{
@@ -120,6 +141,14 @@ else if(rType.equals("Breakfast"))
 	
 	if(rs.next())
 	{
+		pstmt = conn.prepareStatement("SELECT * FROM BreakfastReview br WHERE br.bType=? AND br.HotelID=? AND br.CID=?");
+		pstmt.setString(1,bType);
+		pstmt.setString(2,hotel);
+		pstmt.setString(3,cid);
+		rs=pstmt.executeQuery();
+		
+		if(!rs.next())
+		{
 		pstmt = conn.prepareStatement("INSERT INTO BreakfastReview (bType,HotelID,CID,Rating,TextComment,DateSubmitted) VALUES (?,?,?,?,?,current_date())");
 		pstmt.setString(1, bType);
 		pstmt.setString(2, hotel);
@@ -127,6 +156,19 @@ else if(rType.equals("Breakfast"))
 		pstmt.setString(4, rating);
 		pstmt.setString(5, comments);
 		pstmt.executeUpdate();
+		}
+		else
+		{
+			rs.close();
+			pstmt.close();
+			%>
+			<script>
+			window.open("review.jsp","_self")
+		
+			alert("Cannot write another review for the same breakfast!")
+			</script>
+			<%
+		}
 	}
 	else
 	{
@@ -152,6 +194,14 @@ else if(rType.equals("Service"))
 	
 	if(rs.next())
 	{
+		pstmt = conn.prepareStatement("SELECT * FROM ServiceReview sr WHERE sr.sType=? AND sr.HotelID=? AND sr.CID=?");
+		pstmt.setString(1,sType);
+		pstmt.setString(2,hotel);
+		pstmt.setString(3,cid);
+		rs=pstmt.executeQuery();
+		
+		if(!rs.next())
+		{
 		pstmt = conn.prepareStatement("INSERT INTO ServiceReview (sType,HotelID,CID,Rating,TextComment,DateSubmitted) VALUES (?,?,?,?,?,current_date())");
 		pstmt.setString(1, sType);
 		pstmt.setString(2, hotel);
@@ -159,6 +209,19 @@ else if(rType.equals("Service"))
 		pstmt.setString(4, rating);
 		pstmt.setString(5, comments);
 		pstmt.executeUpdate();
+		}
+		else
+		{
+			rs.close();
+			pstmt.close();
+			%>
+			<script>
+			window.open("review.jsp","_self")
+		
+			alert("Cannot write another review for the same service!")
+			</script>
+			<%
+		}
 	}
 	else
 	{
