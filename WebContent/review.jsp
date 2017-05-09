@@ -95,6 +95,7 @@ while(rs.next())
 	<option value="<%=rs.getString("HotelID")%>"><%=rs.getString("Street")+", "+rs.getString("City")+", "+rs.getString("State")+", "+rs.getString("Country")+", "+rs.getString("ZIP")%></option>
 	<%
 }
+
 %>
 
 </select>
@@ -109,18 +110,39 @@ while(rs.next())
   <br>
   <input type="radio" name="rtype" value="Breakfast"> Breakfast: 
   	<select name="breakfast">
-  	<option value="Standard">Standard</option>
-  	<option value="Light Breakfast">Light Breakfast</option>
-  	<option value="Continental">Continental</option>
-  	<option value="Buffet">Buffet</option>
-  	</select>
+<%
+stmt = conn.createStatement();
+rs = stmt.executeQuery("SELECT * FROM Breakfast");
+
+//Populate drop down list to allow cutomer to select the breakfast they ordered.
+while(rs.next())
+{
+	%>
+	<option value="<%=rs.getString("bType")%>"><%=rs.getString("bType")%></option>
+	<%
+}
+
+%>
+
+</select>
   <br>
   <input type="radio" name="rtype" value="Service"> Service: 
   	<select name="service">
-  	<option value="Laundry">Laundry</option>
-  	<option value="Massage">In Room Massage</option>
-  	<option value="Food">In Room Food Delivery</option>
-  	<option value="Movies">In Room Movies</option>
+ <%
+stmt = conn.createStatement();
+rs = stmt.executeQuery("SELECT * FROM Service");
+
+//Populate drop down list to allow cutomer to select the service they ordered.
+while(rs.next())
+{
+	%>
+	<option value="<%=rs.getString("sType")%>"><%=rs.getString("sType")%></option>
+	<%
+}
+
+%>
+
+</select>
   	</select>	
   <br>
 </fieldset>
