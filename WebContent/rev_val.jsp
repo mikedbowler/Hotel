@@ -40,6 +40,7 @@ li a:hover {
   <li><a href="signin.html">Logout</a></li>
   <li><a href="reservation.jsp">Reserve a Room</a></li>
   <li><a href="update.jsp">Update User Info</a></li>
+  <li><a href="review.jsp">Write a Review</a></li>
 </ul>
 
 <h1>Thank You! Your Feedback is Appreciated!</h1>
