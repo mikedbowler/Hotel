@@ -130,6 +130,13 @@ function validateForm() {
    {
    sDate = document.forms["checkoutForm"]["sDate"+1].value;
    eDate = document.forms["checkoutForm"]["eDate"+i].value;
+   
+   if(sDate=="" || eDate=="")
+   {
+   	alert("Error: Must enter all CheckIn/CheckOut Dates!");
+   	
+   	return false;
+   }
 
    checkIn = new Date(sDate);
    checkOut = new Date(eDate);
