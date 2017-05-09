@@ -38,9 +38,8 @@ li a:hover {
 
 <ul>
   <li><a href="signin.html">Logout</a></li>
-  <li><a href="index.html">Registration</a></li>
-  <li><a href="reservation.html">Reservation</a></li>
-  <li><a href="review.jsp">Review</a></li>
+  <li><a href="reservation.jsp">Reserve a Room</a></li>
+  <li><a href="update.jsp">Update User Info</a></li>
 </ul>
 
 <h1>Thank You! Your Feedback is Appreciated!</h1>
