@@ -43,22 +43,6 @@ li a:hover {
 
 <body>
 	<!--This page will be our online reservation screen-->
-	
-<script>
-function validateForm() {
-    var fname = document.forms["chkForm"]["firstname"].value;
-    var lanme = document.forms["chkForm"]["lastname"].value;
-    var addr = document.forms["chkForm"]["address"].value;
-    var ccnum = document.forms["chkForm"]["cardnumber"].value;
-    var sec = document.forms["chkForm"]["seccode"].value;
-    
-    if (fname=="" || lname=="" || addr=="" || ccnum=="" || sec=="") {
-        alert("All fields must be filled out!");
-        return false;
-    }
-    
-}
-</script>
 
 <div align="center">
 <h1>Additional Requests</h1>
@@ -131,7 +115,35 @@ function validateForm() {
 }
 session.setAttribute("numRooms", counter);
 out.println("<input type=\"submit\" value=\"Confirm\">");
+%>
+<script>
+function validateForm() {
+
+    var sDate=""; 
+    var eDate="";
+    var checkIn=null;
+    var checkOut=null;
+
+    var count = <%=counter%>;
+
+   for(i=1;i<=count;i++)
+   {
+   sDate = document.forms["checkoutForm"]["sDate"+1].value;
+   eDate = document.forms["checkoutForm"]["eDate"+i].value;
+
+   checkIn = new Date(sDate);
+   checkOut = new Date(eDate);
    
+    if(checkIn>checkOut)
+    {
+    alert("Error: CheckOut date is before CheckIn date!");
+
+    return false;
+    }
+   }
+}
+</script>
+  <%
 // Close the ResultSet 
 //rs.close(); 
 //ClosetheStatement
