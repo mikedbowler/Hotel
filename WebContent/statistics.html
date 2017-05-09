@@ -36,8 +36,8 @@ li a:hover {
 	<!--This page will be our hotel statistics screen-->
 <script>
 function validateForm() {
-    var beginDate = document.forms["statForm"]["begin"].value;
-    var endDate = document.forms["statForm"]["end"].value;
+    var beginDate = document.forms["statForm"]["in"].value;
+    var endDate = document.forms["statForm"]["out"].value;
     
     if (beginDate=="" || endDate=="") {
         alert("All fields must be filled out!");
@@ -47,7 +47,7 @@ function validateForm() {
 </script>
 
 <ul>
-  <li><a href="signin.html">Sign In</a></li>
+  <li><a href="signin.html">Logout</a></li>
 </ul>
 
 <form name="statForm" method="POST" action="statistics.jsp" onsubmit="return validateForm()">
